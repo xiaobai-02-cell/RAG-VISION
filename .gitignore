@@ -4,3 +4,6 @@ out/
 *.iml
 *.class
 *.log
+.env
+application.yml
+Al-项目.pdf
