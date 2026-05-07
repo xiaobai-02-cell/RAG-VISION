@@ -1,6 +1,6 @@
 # CV-RAG（Java + Spring Boot）
 
-本项目是一个**计算机视觉 RAG 系统**的起步实现：
+本项目是一个**计算机视觉 RAG 系统**的起步实现,目的是利用起来实验室堆积的资料做一个智能问答系统：
 
 - Java + Spring Boot
 - LangChain4j（当前先保留依赖，后续可进一步接入）
