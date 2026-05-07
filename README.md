@@ -1,6 +1,6 @@
 # CV-RAG (Java, Spring Boot)
 
-This project is a starter implementation of a **computer vision RAG system** aligned with the stack from `Al-项目.pdf`:
+This project is a starter implementation of a **computer vision RAG system** `:
 
 - Java + Spring Boot
 - LangChain4j (dependency reserved for follow-up integration)
