@@ -1,0 +1,353 @@
+:root {
+    --bg: #f1efe8;
+    --paper: #fffdf8;
+    --ink: #1f2a2e;
+    --muted: #5f6a6e;
+    --accent: #d24f2d;
+    --accent-2: #00747c;
+    --line: #d8d1c3;
+    --ok: #137547;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: radial-gradient(1300px 700px at 10% -20%, #f6d8c6 0%, transparent 60%),
+                radial-gradient(1000px 600px at 100% 0%, #cde7e6 0%, transparent 55%),
+                var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "IBM Plex Sans", sans-serif;
+}
+
+.shell {
+    width: min(1160px, 94vw);
+    margin: 24px auto 32px;
+    background: color-mix(in hsl, var(--paper) 88%, white 12%);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: 0 14px 40px rgba(10, 24, 30, 0.08);
+    overflow: hidden;
+}
+
+.hero {
+    padding: 26px 28px 22px;
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 24px;
+    background:
+            linear-gradient(110deg, rgba(210, 79, 45, 0.11) 0%, rgba(0, 116, 124, 0.08) 100%),
+            repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0 10px, rgba(255, 255, 255, 0.16) 10px 20px);
+    border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    color: var(--accent-2);
+    font-weight: 700;
+}
+
+h1 {
+    margin: 0;
+    font-size: 34px;
+    line-height: 1.15;
+}
+
+.sub {
+    margin: 10px 0 0;
+    color: var(--muted);
+}
+
+.session-card {
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.74);
+    display: grid;
+    gap: 10px;
+}
+
+.session-card h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    border: 1px solid #bfb6a7;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--ink);
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid color-mix(in srgb, var(--accent-2) 45%, transparent);
+    border-color: var(--accent-2);
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--line);
+}
+
+.tab {
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 13px 18px;
+    font-size: 14px;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.tab.active {
+    color: var(--ink);
+    font-weight: 700;
+    background: linear-gradient(180deg, rgba(0, 116, 124, 0.08), rgba(0, 116, 124, 0.02));
+    box-shadow: inset 0 -2px 0 var(--accent-2);
+}
+
+.panel {
+    display: none;
+    padding: 22px 26px 26px;
+}
+
+.panel.active {
+    display: block;
+    animation: fade-in 0.22s ease;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.panel header h2 {
+    margin: 0 0 6px;
+}
+
+.panel header p {
+    margin: 0 0 16px;
+    color: var(--muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.wide {
+    grid-column: 1 / -1;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--accent) 0%, #bb3f21 100%);
+    color: #fff;
+}
+
+.btn.primary:hover {
+    filter: brightness(1.04);
+}
+
+.btn.ghost {
+    border-color: #c9c0b0;
+    background: #fff;
+    color: var(--ink);
+}
+
+.hidden {
+    display: none;
+}
+
+.log {
+    margin-top: 14px;
+    min-height: 84px;
+    max-height: 260px;
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    background: #131f26;
+    color: #d8f4ea;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: "Fira Code", "JetBrains Mono", Consolas, monospace;
+    font-size: 12px;
+}
+
+.timeline {
+    margin-top: 14px;
+    display: grid;
+    gap: 10px;
+}
+
+.qa-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+.session-sidebar {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.session-head {
+    padding: 12px;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 10px;
+}
+
+.session-head h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.session-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 540px;
+    overflow: auto;
+}
+
+.session-item {
+    width: 100%;
+    border: none;
+    background: #fff;
+    border-bottom: 1px solid #ece6db;
+    padding: 10px 12px;
+    text-align: left;
+    cursor: pointer;
+    display: grid;
+    gap: 4px;
+}
+
+.session-item:hover {
+    background: #f8f7f2;
+}
+
+.session-item.active {
+    background: #eef8f8;
+    box-shadow: inset 3px 0 0 var(--accent-2);
+}
+
+.session-title {
+    font-size: 13px;
+    color: #223;
+    font-weight: 600;
+}
+
+.session-sub {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.btn.danger {
+    border-color: #e6b0a6;
+    color: #9f2d1f;
+}
+
+.bubble {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    padding: 10px 12px;
+}
+
+.bubble.user {
+    background: #fff7f1;
+    border-color: #efcab8;
+}
+
+.bubble.assistant {
+    background: #f1fbfb;
+    border-color: #cde8e9;
+}
+
+.bubble .role {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+.bubble .meta {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #d4cebf;
+    font-size: 12px;
+    color: #334;
+}
+
+.ok {
+    color: var(--ok);
+}
+
+.error {
+    color: #b03625;
+}
+
+@media (max-width: 920px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .qa-layout {
+        grid-template-columns: 1fr;
+    }
+}

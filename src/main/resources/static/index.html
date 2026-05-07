@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV-RAG 控制台</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="shell">
+    <section class="hero">
+        <div>
+            <p class="eyebrow">CV-RAG Console</p>
+            <h1>文档服务 + 问答服务 + 长期记忆</h1>
+            <p class="sub">
+                可视化上传文档并标注元数据，执行检索增强问答，支持主动录入长期记忆。
+            </p>
+        </div>
+        <div class="session-card">
+            <h3>会话身份</h3>
+            <label>用户 ID<input id="userId" value="u-demo"></label>
+            <label>会话 ID<input id="sessionId" value="s-demo"></label>
+            <div class="actions">
+                <button id="newSessionBtn" class="btn ghost" type="button">新建会话</button>
+                <button id="reloadSessionsBtn" class="btn ghost" type="button">刷新列表</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="tabs">
+        <button class="tab active" data-tab="ingest">文档服务</button>
+        <button class="tab" data-tab="qa">问答服务</button>
+        <button class="tab" data-tab="memory">长期记忆</button>
+    </section>
+
+    <section id="ingest" class="panel active">
+        <header>
+            <h2>文档上传与处理</h2>
+            <p>支持文件、纯文本、图片三种入库方式，并标注文档类型、所属项目、标签等元数据。</p>
+        </header>
+
+        <form id="ingestForm" class="grid">
+            <label>入库模式
+                <select id="ingestMode">
+                    <option value="file">文件（推荐）</option>
+                    <option value="text">纯文本</option>
+                    <option value="image">图片</option>
+                </select>
+            </label>
+            <label>文档 ID（可空）
+                <input id="docId" placeholder="doc-java-001">
+            </label>
+            <label>文档类型
+                <select id="docType">
+                    <option value="project_material">项目资料</option>
+                    <option value="dev_spec">研发规范</option>
+                </select>
+            </label>
+            <label>所属项目
+                <input id="project" placeholder="cv-rag-platform">
+            </label>
+            <label class="wide">标签（逗号分隔）
+                <input id="tags" placeholder="rag,redis,pinecone,java">
+            </label>
+
+            <label id="sourceNameWrap" class="wide hidden">来源名称
+                <input id="sourceName" placeholder="manual-note">
+            </label>
+            <label id="textWrap" class="wide hidden">文本内容
+                <textarea id="textContent" rows="8" placeholder="输入要入库的文档文本..."></textarea>
+            </label>
+            <label id="captionWrap" class="wide hidden">图片描述（可空）
+                <input id="caption" placeholder="例如：系统架构图，包含RAG检索和Redis记忆">
+            </label>
+            <label id="fileWrap" class="wide">选择文件
+                <input id="uploadFile" type="file">
+            </label>
+
+            <div class="actions wide">
+                <button type="submit" class="btn primary">上传并入库</button>
+                <button type="button" id="clearIngestLogBtn" class="btn ghost">清空日志</button>
+            </div>
+        </form>
+
+        <pre id="ingestLog" class="log"></pre>
+    </section>
+
+    <section id="qa" class="panel">
+        <header>
+            <h2>问答与会话管理</h2>
+            <p>左侧管理会话历史（列表、回放、删除），右侧进行问答。</p>
+        </header>
+
+        <div class="qa-layout">
+            <aside class="session-sidebar">
+                <div class="session-head">
+                    <h3>会话列表</h3>
+                    <button id="deleteSessionBtn" class="btn ghost danger" type="button">删除当前会话</button>
+                </div>
+                <ul id="sessionList" class="session-list"></ul>
+            </aside>
+
+            <div>
+                <form id="chatForm" class="grid">
+                    <label class="wide">问题
+                        <textarea id="question" rows="4" placeholder="例如：这个系统短期记忆怎么做？"></textarea>
+                    </label>
+                    <label>TopK
+                        <input id="topK" type="number" min="1" max="30" value="6">
+                    </label>
+                    <div class="actions">
+                        <button type="submit" class="btn primary">发送问题</button>
+                        <button type="button" id="clearChatBtn" class="btn ghost">清空展示</button>
+                    </div>
+                </form>
+                <div id="chatTimeline" class="timeline"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="memory" class="panel">
+        <header>
+            <h2>长期记忆主动录入</h2>
+            <p>用户主动录入长期信息，保证记忆质量可控、精准。</p>
+        </header>
+
+        <form id="memoryForm" class="grid">
+            <label class="wide">长期记忆内容
+                <textarea id="memoryContent" rows="6" placeholder="例如：我是Java开发者，代码示例默认使用Java。"></textarea>
+            </label>
+            <div class="actions wide">
+                <button type="submit" class="btn primary">写入长期记忆</button>
+                <button type="button" id="fillMemoryBtn" class="btn ghost">填充示例</button>
+            </div>
+        </form>
+        <pre id="memoryLog" class="log"></pre>
+    </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
